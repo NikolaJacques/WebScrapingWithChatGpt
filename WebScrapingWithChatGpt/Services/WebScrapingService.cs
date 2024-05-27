@@ -16,7 +16,7 @@ namespace WebScrapingWithChatGpt.Services
         {
             var prompt = new StringBuilder();
 
-            prompt.Append("Scrape the html content and return an object with the following data: ");
+            prompt.Append("Scrape the html content and return a json object with the following data: ");
 
             var properties = typeof(T).GetProperties()
                                       .Select(p => p.Name)
@@ -38,8 +38,7 @@ namespace WebScrapingWithChatGpt.Services
 
             prompt.Append(typeString);
 
-            prompt.Append("I want you to extract the data and produce the object, not provide me with the code for doing so.");
-            prompt.Append("I only want the object itself in the result, no other note or explanation.");
+            prompt.Append("Return only the object.");
 
             prompt.Append($"Here is the html to draw the data from: {html[0]}");
 
